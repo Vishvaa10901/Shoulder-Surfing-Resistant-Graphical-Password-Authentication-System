@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .header {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding-top:10px;
+            padding-bottom:10px;
+            text-align: center;
+        }
+        .mar{margin-top: 65px;}
+    </style>
+    <script>
+        function validatename(letters)
+        {
+            var regex=/^[A-Za-z]+$/;
+            if(letters.uid.value == "")
+            {
+                alert("Name Field cannot be left empty");
+                letters.uid.focus();
+                return false;
+            }
+            if(regex.test(letters.uid.value) == false)
+            {
+                alert("Name must be in alphabets only");
+                letters.uid.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script type = "text/javascript" >  
+        function preventBack() { window.history.forward(); }  
+        setTimeout("preventBack()", 0);  
+        window.onunload = function () { null };  
+    </script> 
+</head>
+<body style="background-color: darksalmon;"> 
+    <div class="bg-dark text-white header">
+        <h1>LOGIN HERE..</h1>
+    </div>
+        {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show mar" role="alert">
+            <h3 align="center">{{message}}</h3>
+        </div>      
+        {% endfor %}
+    <div class="container d-flex justify-content-center">
+        <div class="py-5 align-items-center ml-5 mr-5 mt-5" style="width: 500px;">
+           
+            <!-- Registeration Form -->
+            <div class="ml-auto mt-5">
+                <form action="load_image" method="post" onSubmit="return validatename(this)">
+                    {% csrf_token %}
+                        <div class="input-group col-lg-12 mb-4">
+                            <input type="text" name="uid" autocomplete="off" placeholder="Userame" class="form-control bg-white border-md">
+                        </div>
+    
+                        <div class="input-group col-lg-12 mb-4">
+                        <input type="submit" name="submit" class="form-control bg-primary text-white border-md">
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+    <footer>
+        <div class="bg-dark text-white footer">
+        <p> GRAPHICAL PASSWORD AUTHENTICATION</p>
+        </div>
+    </footer>
+</body>
+</html>
